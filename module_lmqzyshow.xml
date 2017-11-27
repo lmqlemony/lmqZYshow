@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_lmqzyshow" default="compile.module.lmqzyshow">
+  <dirname property="module.lmqzyshow.basedir" file="${ant.file.module_lmqzyshow}"/>
+  
+  <property name="module.jdk.home.lmqzyshow" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.lmqzyshow" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.lmqzyshow" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.lmqzyshow" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="lmqzyshow.output.dir" value="${module.lmqzyshow.basedir}/build/classes/production/lmqZYshow"/>
+  <property name="lmqzyshow.testoutput.dir" value="${module.lmqzyshow.basedir}/build/classes/test/lmqZYshow"/>
+  
+  <path id="lmqzyshow.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="lmqzyshow.module.production.classpath">
+    <path refid="${module.jdk.classpath.lmqzyshow}"/>
+  </path>
+  
+  <path id="lmqzyshow.runtime.production.module.classpath">
+    <pathelement location="${lmqzyshow.output.dir}"/>
+  </path>
+  
+  <path id="lmqzyshow.module.classpath">
+    <path refid="${module.jdk.classpath.lmqzyshow}"/>
+    <pathelement location="${lmqzyshow.output.dir}"/>
+  </path>
+  
+  <path id="lmqzyshow.runtime.module.classpath">
+    <pathelement location="${lmqzyshow.testoutput.dir}"/>
+    <pathelement location="${lmqzyshow.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.lmqzyshow">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.lmqzyshow">
+    <patternset refid="excluded.from.module.lmqzyshow"/>
+  </patternset>
+  
+  
+  <target name="compile.module.lmqzyshow" depends="compile.module.lmqzyshow.production,compile.module.lmqzyshow.tests" description="Compile module lmqZYshow"/>
+  
+  <target name="compile.module.lmqzyshow.production" depends="register.custom.compilers" description="Compile module lmqZYshow; production classes"/>
+  
+  <target name="compile.module.lmqzyshow.tests" depends="register.custom.compilers,compile.module.lmqzyshow.production" description="compile module lmqZYshow; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.lmqzyshow" description="cleanup module">
+    <delete dir="${lmqzyshow.output.dir}"/>
+    <delete dir="${lmqzyshow.testoutput.dir}"/>
+  </target>
+</project>
